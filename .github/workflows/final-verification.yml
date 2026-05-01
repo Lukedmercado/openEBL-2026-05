@@ -46,11 +46,13 @@ jobs:
           # Use the actual check names you care about
           PDF_CHECKS=$'check_files\ncheck-file-case-sensitivity\nsubmission_check\nverification'
           GDS_CHECKS=$'check_files\ncheck-file-case-sensitivity\nsubmission_check\nverification'
+          PYTHON_CHECKS=$'run-python'
+
 
           MAX_RETRIES=10
           SLEEP_SECONDS=30
 
-          ALL_REQUIRED=$(printf '%s\n' "$PDF_CHECKS" "$GDS_CHECKS" | sort -u)
+          ALL_REQUIRED=$(printf '%s\n' "$PDF_CHECKS" "$GDS_CHECKS" "$PYTHON_CHECKS" | sort -u)
 
           for ((i=1;i<=MAX_RETRIES;i++)); do
             echo "Fetching checks for PR #$PR_NUMBER (attempt $i/$MAX_RETRIES)..."
